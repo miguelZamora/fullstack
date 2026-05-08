@@ -31,7 +31,7 @@ npm install
 # 3. Ejecutar en modo desarrollo
 npm run dev
 
-``` 
+'''
 src/
 ├── main.tsx                  # Punto de entrada, registra adaptadores y Chart.js
 ├── App.tsx                   # Componente raíz, carga Dashboard
@@ -43,6 +43,7 @@ src/
 │   └── useDashboardData.ts   # Hook principal: filtros, métricas, acumulados
 ├── components/
 │   ├── Dashboard.tsx         # Layout principal, filtros y composición
+'''
 │   ├── KpiRow.tsx            # Tarjetas con último valor y sparkline
 │   ├── MainChart.tsx         # Gráfico de líneas diarias con selector de métrica
 │   ├── ConversionFunnel.tsx  # Embudo de conversión acumulado (barras horizontales)
