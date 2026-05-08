@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import { seriesA, seriesB, seriesC, seriesD } from '../data/mockData';
+import React from 'react';
+// 1. Importar el JSON como módulo default (Vite lo transforma automáticamente)
+import metricsData from '../data/metrics.json';
 import { useDashboardData } from '../hooks/useDashboardData';
 import KpiRow from './KpiRow';
 import MainChart from './MainChart';
 import ConversionFunnel from './ConversionFunnel';
 import TimeMetrics from './TimeMetrics';
+import type { Series } from '../types';
 
-const allSeries = { A: seriesA, B: seriesB, C: seriesC, D: seriesD };
+// 2. Extraer las series A, B, C, D con la aserción de tipo necesaria
+const { A, B, C, D } = metricsData as Record<string, Series>;
+const allSeries = { A, B, C, D };
+
+// 3. Obtener las opciones de métrica directamente del metadata de la primera serie
+const metricOptions = allSeries.A.metadata.metrics.map((m) => ({
+  key: m.key,
+  label: m.label,
+}));
 
 const Dashboard: React.FC = () => {
   const {
@@ -21,36 +31,22 @@ const Dashboard: React.FC = () => {
     filteredData,
     mainChartDatasets,
     totalsBySeries,
-    latestValues,
   } = useDashboardData({ allSeries });
-
-  const metricOptions = [
-    { key: 'traffic', label: 'Tráfico' },
-    { key: 'leads_created', label: 'Leads creados' },
-    { key: 'leads_qualified', label: 'Leads calificados' },
-    { key: 'deals_created', label: 'Deals creados' },
-    { key: 'deals_won', label: 'Deals ganados' },
-    { key: 'deals_lost', label: 'Deals perdidos' },
-    { key: 'avg_response_time_min', label: 'Tiempo respuesta (min)' },
-    { key: 'avg_deal_cycle_days', label: 'Ciclo de venta (días)' },
-    { key: 'stale_deals', label: 'Deals envejecidos' },
-    { key: 'support_tickets_opened', label: 'Tickets abiertos' },
-    { key: 'support_avg_resolution_hours', label: 'Resolución soporte (h)' },
-  ];
 
   return (
     <div style={{ padding: '1rem', maxWidth: '1400px', margin: '0 auto' }}>
       <h1>Sales Dashboard</h1>
-      {/* Controles */}
+
+      {/* Controles de fecha y series */}
       <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <div>
           <label>Desde: </label>
-          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
           <label> Hasta: </label>
-          <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
         <div>
-          {Object.keys(allSeries).map(s => (
+          {Object.keys(allSeries).map((s) => (
             <button
               key={s}
               onClick={() => toggleSeries(s)}
@@ -70,9 +66,15 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* KPI Row con la métrica principal */}
-      <KpiRow metricKey={selectedMetric} label={metricOptions.find(m => m.key === selectedMetric)?.label || ''} unit="" filteredData={filteredData} />
+      {/* Fila de KPIs con la métrica seleccionada */}
+      <KpiRow
+        metricKey={selectedMetric}
+        label={metricOptions.find((m) => m.key === selectedMetric)?.label || ''}
+        unit=""
+        filteredData={filteredData}
+      />
 
+      {/* Gráfico principal diario */}
       <MainChart
         selectedMetric={selectedMetric}
         setSelectedMetric={setSelectedMetric}
@@ -80,8 +82,10 @@ const Dashboard: React.FC = () => {
         allMetrics={metricOptions}
       />
 
+      {/* Embudo de conversión */}
       <ConversionFunnel totalsBySeries={totalsBySeries} />
 
+      {/* Métricas de tiempo y deals envejecidos */}
       <TimeMetrics filteredData={filteredData} />
     </div>
   );
