@@ -1,2 +1,2 @@
 # fullstack
-desarrollo-dashbord
+desarrollo-dashboard
