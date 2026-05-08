@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { ChartData, ChartOptions } from 'chart.js';
+import type { ChartData, ChartOptions } from 'chart.js';
 
 interface Props {
   selectedMetric: string;
@@ -10,9 +10,7 @@ interface Props {
 }
 
 const MainChart: React.FC<Props> = ({ selectedMetric, setSelectedMetric, datasets, allMetrics }) => {
-  const data: ChartData<'line'> = {
-    datasets,
-  };
+  const data: ChartData<'line'> = { datasets };
 
   const options: ChartOptions<'line'> = {
     responsive: true,

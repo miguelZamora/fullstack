@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Series, DayData, MetricsData } from '../types';
+import type { Series, DayData, MetricsData } from '../types';
 import { parseISO, isWithinInterval } from 'date-fns';
 
 interface UseDashboardDataProps {

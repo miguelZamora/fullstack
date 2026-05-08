@@ -1,4 +1,4 @@
-import { Series, DayData, MetricsData } from '../types';
+import type { Series, DayData, MetricsData } from '../types';
 import { addDays, format } from 'date-fns';
 
 const generateDay = (date: string, base: number, noise: number): MetricsData => {

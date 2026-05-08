@@ -1,19 +1,19 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { DayData } from '../types';
+import type { DayData } from "../types";
 
 interface Props {
   filteredData: Record<string, DayData[]>;
 }
 
 const TimeMetrics: React.FC<Props> = ({ filteredData }) => {
-  // Promedio en el período para respuesta y ciclo
   const avgResponse = Object.fromEntries(
     Object.entries(filteredData).map(([series, days]) => {
       const avg = days.reduce((acc, d) => acc + d.metrics.avg_response_time_min, 0) / (days.length || 1);
       return [series, avg];
     })
   );
+
   const avgCycle = Object.fromEntries(
     Object.entries(filteredData).map(([series, days]) => {
       const avg = days.reduce((acc, d) => acc + d.metrics.avg_deal_cycle_days, 0) / (days.length || 1);
@@ -33,29 +33,17 @@ const TimeMetrics: React.FC<Props> = ({ filteredData }) => {
 
   const responseData = {
     labels: series.map(s => `Serie ${s}`),
-    datasets: [{
-      label: 'Tiempo de respuesta (min)',
-      data: series.map(s => avgResponse[s]),
-      backgroundColor: colors,
-    }],
+    datasets: [{ label: 'Tiempo de respuesta (min)', data: series.map(s => avgResponse[s]), backgroundColor: colors }],
   };
 
   const cycleData = {
     labels: series.map(s => `Serie ${s}`),
-    datasets: [{
-      label: 'Ciclo de venta (días)',
-      data: series.map(s => avgCycle[s]),
-      backgroundColor: colors,
-    }],
+    datasets: [{ label: 'Ciclo de venta (días)', data: series.map(s => avgCycle[s]), backgroundColor: colors }],
   };
 
   const staleData = {
     labels: series.map(s => `Serie ${s}`),
-    datasets: [{
-      label: 'Deals envejecidos acumulados',
-      data: series.map(s => staleTotal[s]),
-      backgroundColor: colors,
-    }],
+    datasets: [{ label: 'Deals envejecidos acumulados', data: series.map(s => staleTotal[s]), backgroundColor: colors }],
   };
 
   return (

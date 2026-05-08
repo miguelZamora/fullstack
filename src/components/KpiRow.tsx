@@ -8,18 +8,20 @@ import {
   LineElement,
   Filler,
 } from 'chart.js';
+import type { DayData } from "../types";
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler);
 
 interface Props {
   metricKey: string;
   label: string;
   unit: string;
-  filteredData: Record<string, import('../types').DayData[]>;
+  filteredData: Record<string, DayData[]>;
 }
 
 const KpiRow: React.FC<Props> = ({ metricKey, label, unit, filteredData }) => {
-  // Para cada serie, obtenemos los últimos n días (30) para sparkline y el último valor.
   const colors = ['#36A2EB', '#FF6384', '#4BC0C0', '#FFCE56'];
+
   return (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
       {Object.entries(filteredData).map(([series, days], idx) => {
@@ -45,10 +47,19 @@ const KpiRow: React.FC<Props> = ({ metricKey, label, unit, filteredData }) => {
           <div key={series} style={{ flex: '1 1 200px', background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
             <div style={{ fontSize: '0.8rem', color: '#666' }}>{label} · {series}</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-              {typeof value === 'number' ? (value % 1 === 0 ? value.toLocaleString() : value.toFixed(1)) : value} <span style={{ fontSize: '0.8rem', color: '#888' }}>{unit}</span>
+              {typeof value === 'number' ? (value % 1 === 0 ? value.toLocaleString() : value.toFixed(1)) : value} 
+              <span style={{ fontSize: '0.8rem', color: '#888' }}>{unit}</span>
             </div>
             <div style={{ height: '40px', marginTop: '0.5rem' }}>
-              <Line data={chartData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { enabled: false } }, scales: { x: { display: false }, y: { display: false } } }} />
+              <Line 
+                data={chartData} 
+                options={{ 
+                  responsive: true, 
+                  maintainAspectRatio: false, 
+                  plugins: { legend: { display: false }, tooltip: { enabled: false } }, 
+                  scales: { x: { display: false }, y: { display: false } } 
+                }} 
+              />
             </div>
           </div>
         );
