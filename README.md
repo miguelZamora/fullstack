@@ -72,6 +72,9 @@ Centraliza el filtrado por rango, la selección de series y la métrica
 activa. Todos los componentes reciben los datos ya procesados, lo que
 facilita probar y cambiar la UI sin tocar la lógica de negocio.
 
+Finalmente se cambio a auna llamada de el metrics.json de muestra
+en fin se usuara algo para alimentar ese datos con esa estructura ...
+
 **Datos mock generados en cliente**
 Genero 365 días por serie con estacionalidad semanal y tendencia mensual
 para que la demo se vea realista. En producción, este módulo se
