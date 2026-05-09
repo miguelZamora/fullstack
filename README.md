@@ -1,7 +1,7 @@
-# React + TypeScript + Vite
 # Sales Dashboard – Revisión de Gráficos, Funciones y Cálculos
 
 Dashboard de ventas y marketing construido con **React**, **TypeScript** y **Chart.js**.  
+
 Permite visualizar la evolución diaria de métricas clave, comparar series (A, B, C, D) y analizar el funnel de conversión.
 
 ---
