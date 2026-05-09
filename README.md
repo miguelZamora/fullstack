@@ -20,6 +20,11 @@ Permite visualizar la evolución diaria de métricas clave, comparar series (A, 
 
 ## **Instalación y ejecución**
 
+
+![Diagrama 1](diagrama.png)
+![Diagrama 2](diagramaclases.png)
+![Diagrama 3](diagramacomponentes.png)
+
 ```bash
 # 1. Clonar el repositorio (si no está ya)
 git clone <url-del-repo>
@@ -30,6 +35,9 @@ npm install
 
 # 3. Ejecutar en modo desarrollo
 npm run dev
+
+
+
 
 '''
 src/
