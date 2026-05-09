@@ -21,11 +21,9 @@ Permite visualizar la evolución diaria de métricas clave, comparar series (A, 
 ## **Instalación y ejecución**
 
 
-![Diagrama 1](diagrama.png)
-![Diagrama 2](diagramaclases.png)
-![Diagrama 3](diagramacomponentes.png)
 
-```bash
+
+``` bash
 # 1. Clonar el repositorio (si no está ya)
 git clone <url-del-repo>
 cd fullstack   # o el nombre de la carpeta raíz
@@ -35,7 +33,7 @@ npm install
 
 # 3. Ejecutar en modo desarrollo
 npm run dev
-
+```
 
 
 
@@ -56,7 +54,7 @@ src/
 │   ├── ConversionFunnel.tsx  # Embudo de conversión acumulado (barras horizontales)
 │   └── TimeMetrics.tsx       # Gráficos de tiempos de respuesta, ciclo y deals envejecidos
 └── index.css                 # Estilos globales básicos
-'''
+```
 
 
 Dashboard de evolución de métricas de ventas y marketing para comparar
@@ -115,5 +113,9 @@ array de URLs o endpoints y resuelva las series sin cambiar componentes.
 **Internacionalización de etiquetas y unidades**
 Las métricas tienen unidades (`visits`, `min`, `days`) que hoy se
 muestran en crudo. Con `i18next` se adaptarían al locale del usuario.
+ 
 
 
+![Diagrama 1](diagrama.png)
+![Diagrama 2](diagramaclases.png)
+![Diagrama 3](diagramacomponentes.png)
