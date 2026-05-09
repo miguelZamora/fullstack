@@ -122,9 +122,9 @@ muestran en crudo. Con `i18next` se adaptarían al locale del usuario.
 
 
 
-** Patrón Componente + Hook (Composición en React). ** 
+**Patrón Componente + Hook (Composición en React).** 
 
-*** Patrones aplicados *** 
+***Patrones aplicados*** 
 
 Patrón Componente  
 Cada parte de la interfaz (KpiRow, MainChart, ConversionFunnel, TimeMetrics) es un componente independiente y reutilizable. Esto sigue el principio de divide y vencerás: cada pieza tiene una responsabilidad clara.
