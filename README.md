@@ -35,9 +35,9 @@ npm install
 npm run dev
 ```
 
+Estructura 
 
-
-'''
+```
 src/
 ├── main.tsx                  # Punto de entrada, registra adaptadores y Chart.js
 ├── App.tsx                   # Componente raíz, carga Dashboard
