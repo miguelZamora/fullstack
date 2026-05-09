@@ -119,3 +119,24 @@ muestran en crudo. Con `i18next` se adaptarían al locale del usuario.
 ![Diagrama 1](diagrama.png)
 ![Diagrama 2](diagramaclases.png)
 ![Diagrama 3](diagramacomponentes.png)
+
+
+
+** Patrón Componente + Hook (Composición en React). ** 
+
+*** Patrones aplicados *** 
+
+Patrón Componente  
+Cada parte de la interfaz (KpiRow, MainChart, ConversionFunnel, TimeMetrics) es un componente independiente y reutilizable. Esto sigue el principio de divide y vencerás: cada pieza tiene una responsabilidad clara.
+
+Patrón Hook personalizado  
+useDashboardData encapsula la lógica de negocio (filtrado, métricas, fechas, series) y expone un API sencillo al resto de la app. Es un ejemplo clásico de custom hook.
+
+Patrón Composición  
+El componente Dashboard no hereda nada, sino que compone varios hijos y les pasa props. Esto es más flexible que herencia y es el estilo recomendado en React.
+
+Patrón Contenedor-Presentacional
+
+Dashboard y useDashboardData funcionan como contenedores (manejan estado y lógica).
+
+Los gráficos (KpiRow, MainChart, etc.) son presentacionales (solo muestran datos).
